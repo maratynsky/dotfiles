@@ -8,10 +8,10 @@ parse_git_status() {
         c=`git status --porcelain 2> /dev/null | wc -l`
         if [ $c -eq 0 ]
         then
-          echo 32
+          echo 34
         else
-          echo 33
+          echo 3
         fi
 }
 
-export PS1="\W\033[90m\]\$(parse_git_branch)\[\033[00m\] \e[\$(parse_git_status)m▶\e[0m "
+export PS1="\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] ▶ \[$(tput sgr0)\]"
