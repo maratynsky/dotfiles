@@ -1,14 +1,12 @@
 parse_git_branch() {
-
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
-
 }
 
 parse_git_status() {
         c=`git status --porcelain 2> /dev/null | wc -l`
         if [ $c -eq 0 ]
         then
-          echo 34
+          echo 28
         else
           echo 3
         fi
