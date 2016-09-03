@@ -16,3 +16,10 @@ export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_br
 
 # Password generation
 alias gpwd="openssl rand -base64 $1"
+
+# Better ls, ll
+alias ll="ls -l"
+alias ls="ls -G"
+
+# hub
+alias git=hub
