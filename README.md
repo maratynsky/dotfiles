@@ -1,1 +1,1 @@
-![GitHub Logo](prompt.png?raw=true)
+![Shell prompt](prompt.png?raw=true)
