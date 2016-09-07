@@ -18,7 +18,7 @@ export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_br
 alias gpwd="openssl rand -base64 $1"
 
 # Better ls, ll
-alias ll="ls -l"
+alias ll="ls -lh"
 alias ls="ls -G"
 
 # hub
