@@ -23,3 +23,6 @@ alias ls="ls -G"
 
 # hub
 alias git=hub
+
+# clear snapshots from .m2
+alias clean_mvn_repo="find ~/.m2/repository -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf"
