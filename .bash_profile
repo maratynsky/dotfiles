@@ -12,7 +12,7 @@ parse_git_status() {
         fi
 }
 
-export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] ► \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] ▶︎ \[$(tput sgr0)\]"
 
 # Password generation
 alias gpwd="openssl rand -base64 $1"
