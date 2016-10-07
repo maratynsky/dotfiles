@@ -8,7 +8,7 @@ parse_git_status() {
         then
           echo 64
         else
-          echo 220
+          echo 3
         fi
 }
 
