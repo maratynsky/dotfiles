@@ -6,9 +6,9 @@ parse_git_status() {
         c=`git status --porcelain 2> /dev/null | wc -l`
         if [ $c -eq 0 ]
         then
-          echo 28
+          echo 64
         else
-          echo 3
+          echo 220
         fi
 }
 
