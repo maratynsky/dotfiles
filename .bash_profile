@@ -1,5 +1,6 @@
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+    c=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'`
+    echo "$c"
 }
 
 parse_git_status() {
@@ -24,7 +25,7 @@ parse_git_repo() {
 	fi
 }
 
-export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;238m\]\$(parse_git_repo)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] ▶ \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;238m\]\$(parse_git_repo)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] -> \[$(tput sgr0)\]"
 
 # Password generation
 alias pwdgen="openssl rand -base64 $1"
@@ -34,7 +35,4 @@ alias ll="ls -lh"
 alias ls="ls -G"
 
 # hub
-alias git=hub
-
-# clear snapshots from .m2
-alias clean_mvn_repo="find ~/.m2/repository -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf"
+#alias git=hub
