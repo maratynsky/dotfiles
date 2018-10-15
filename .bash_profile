@@ -25,7 +25,21 @@ parse_git_repo() {
 	fi
 }
 
-export PS1="\[\033[38;5;15m\]\W\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;238m\]\$(parse_git_repo)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] -> \[$(tput sgr0)\]"
+parse_git_relative_path() {
+	repo_dir=`git rev-parse --show-toplevel 2> /dev/null || pwd`
+	cur_dir=`pwd`
+	if [ "$repo_dir" == "$cur_dir" ]
+	then
+	  echo ${cur_dir##*/}
+	else
+	  repo_dir="$repo_dir/"
+	  repo=${cur_dir#*$repo_dir}
+	  echo $repo
+	fi
+}
+
+
+export PS1="\[\033[38;5;15m\]\$(parse_git_relative_path)\[$(tput sgr0)\]\[\033[38;5;243m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;238m\]\$(parse_git_repo)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\] |> \[$(tput sgr0)\]"
 
 # Password generation
 alias pwdgen="openssl rand -base64 $1"
