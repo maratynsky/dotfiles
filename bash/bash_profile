@@ -1,0 +1,51 @@
+parse_git_branch() {
+    c=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'`
+    if [ -z "$c" ]
+    then
+      echo " => "
+    else	    
+      echo " $c "
+    fi
+}
+
+parse_git_status() {
+        c=`git status --porcelain 2> /dev/null | wc -l`
+        if [ $c -eq 0 ]
+        then
+          echo "239"
+        else
+          echo "015"
+        fi
+}
+
+parse_git_repo() {
+	repo_dir=`git rev-parse --show-toplevel 2> /dev/null || pwd`
+	cur_dir=`pwd`
+	if [ "$repo_dir" == "$cur_dir" ]
+	then
+	  echo
+	else
+	  repo=`basename $repo_dir`
+	  echo "$repo/"
+	fi
+}
+
+parse_git_relative_path() {
+	repo_dir=`git rev-parse --show-toplevel 2> /dev/null || pwd`
+	cur_dir=`pwd`
+	if [ "$repo_dir" == "$cur_dir" ]
+	then
+	  echo ${cur_dir##*/}
+	else
+	  repo_dir="$repo_dir/"
+	  repo=${cur_dir#*$repo_dir}
+	  echo $repo
+	fi
+}
+
+
+export PS1="\n\[\033[38;5;238m\]\$(parse_git_repo)\[$(tput sgr0)\]\[\033[38;5;248m\]\$(parse_git_relative_path)\[$(tput sgr0)\]\[\033[38;5;\$(parse_git_status)m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;64m\]\[$(tput sgr0)\]"
+
+# Better ls, ll
+alias ll="ls -lh"
+alias ls="ls -G"
