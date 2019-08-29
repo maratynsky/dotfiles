@@ -1,1 +1,1 @@
-![Shell prompt](prompt.png?raw=true)
+![Shell prompt](p.png?raw=true)
